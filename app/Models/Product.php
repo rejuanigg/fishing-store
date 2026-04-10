@@ -32,4 +32,10 @@ class Product extends Model
     {
         return $this->hasMany(OrderDetail::class);
     }
+
+    protected $fillable = [
+        'name',
+        'description',
+        'price'
+    ];
 }

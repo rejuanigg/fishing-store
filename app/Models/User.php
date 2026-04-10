@@ -41,4 +41,11 @@ class User extends Authenticatable
         return $this->hasMany(Calification::class);
     }
 
+    protected $fillable = [
+        'role',
+        'name',
+        'email',
+        'password',
+    ];
+
 }

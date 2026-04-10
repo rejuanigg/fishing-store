@@ -17,4 +17,11 @@ class Order extends Model
     {
         return $this->hasMany(OrderDetail::class);
     }
+
+    protected $fillable = [
+        'user_id',
+        'status',
+        'datetime',
+        'total'
+    ];
 }

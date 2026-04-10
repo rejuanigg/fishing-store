@@ -11,4 +11,8 @@ class Section extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    protected $fillable = [
+    'name'
+    ];
 }
