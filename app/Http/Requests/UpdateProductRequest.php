@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreCategoryRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +23,11 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:3|max:150',
-            'section_id' => 'required|integer|exists:sections,id'
+            'name'=>'string|min:3|max:150',
+            'description'=>'string|min:3|max:5000',
+            'price'=>'numeric|min:0',
+            'categories' => 'array',
+            'categories.*' => 'integer|exists:categories,id'
         ];
     }
 }
