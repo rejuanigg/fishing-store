@@ -17,7 +17,7 @@ class AuthController extends Controller
             return ['token'=>$token->plainTextToken];
         }
         else {
-            return response()->setStatusCode(401);
+            return response()->json(['message' => 'Credenciales incorrectas'], 401);
         }
     }
 
