@@ -33,7 +33,7 @@ class ImageController extends Controller
 
         $resource = new ImageResource($newImage);
 
-        return $resource->response()->setStatusCode(200);
+        return $resource->response()->setStatusCode(201);
     }
 
     public function update(UpdateImageRequest $request, Image $image)

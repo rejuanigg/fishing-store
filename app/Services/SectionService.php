@@ -2,7 +2,6 @@
 namespace App\Services;
 
 use App\Models\Section;
-use Illuminate\Support\Arr;
 
 class SectionService
 {

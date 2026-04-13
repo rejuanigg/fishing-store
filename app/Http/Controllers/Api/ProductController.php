@@ -30,7 +30,7 @@ class ProductController extends Controller
 
         $resource = new ProductResource($newProduct);
 
-        return $resource->response()->setStatusCode(200);
+        return $resource->response()->setStatusCode(201);
     }
 
     public function update(UpdateProductRequest $request, Product $product)
@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         $resource = new ProductResource($editProduct);
 
-        return $resource->response()->setStatusCode(201);
+        return $resource->response()->setStatusCode(200);
     }
 
     public function destroy(Product $product)

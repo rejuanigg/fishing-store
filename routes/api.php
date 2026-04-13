@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SectionController;
+use App\Http\Controllers\Api\StockController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,5 @@ Route::middleware('auth:sanctum')->group(
         Route::apiResource('categories', CategoryController::class)->names('api.');
         Route::apiResource('products', ProductController::class)->names('api.');
         Route::apiResource('images', ImageController::class)->names('api.');
+        Route::apiResource('stocks', StockController::class)->names('api.');
     });
