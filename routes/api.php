@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ImageController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\StockController;
@@ -22,11 +23,13 @@ Route::middleware('auth:sanctum')->group(
     function()
     {
         Route::post('/logout', [AuthController::class, 'logout']);
+        Route::patch('/edit_profile', [UserController::class, 'update']);
+        Route::delete('/delete_profile', [UserController::class, 'destroy']);
+
         Route::apiResource('sections', SectionController::class)->names('api.');
         Route::apiResource('categories', CategoryController::class)->names('api.');
         Route::apiResource('products', ProductController::class)->names('api.');
         Route::apiResource('images', ImageController::class)->names('api.');
         Route::apiResource('stocks', StockController::class)->names('api.');
-        Route::patch('/edit_profile', [UserController::class, 'update']);
-        Route::delete('/delete_profile', [UserController::class, 'destroy']);
+        Route::apiResource('orders', OrderController::class)->names('api.');
 });

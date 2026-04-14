@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreOrderRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            //   StoreOrderRequest — valida que products sea un array,
+            //   y que cada products.*.product_id exista en la tabla products y products.*.quantity
+            //   sea entero mayor a 0.
+
+            'products'=>'array|required',
+            'products.*.product_id'=>'exists:products,id',
+            'products.*.quantity'=>'integer|min:0',
+        ];
+    }
+}
