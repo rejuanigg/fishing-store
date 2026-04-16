@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CalificationController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\OrderController;
@@ -32,4 +33,5 @@ Route::middleware('auth:sanctum')->group(
         Route::apiResource('images', ImageController::class)->names('api.');
         Route::apiResource('stocks', StockController::class)->names('api.');
         Route::apiResource('orders', OrderController::class)->names('api.');
+        Route::apiResource('califications', CalificationController::class)->names('api.');
 });
