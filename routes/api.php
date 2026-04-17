@@ -12,12 +12,12 @@ use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::apiResource('products.califications', CalificationController::class)->names('api.')->only('index');
-Route::apiResource('sections', SectionController::class)->names('api.')->only('index');
-Route::apiResource('categories', CategoryController::class)->names('api.')->only('index');
-Route::apiResource('products', ProductController::class)->names('api.')->only('index', 'show');
-Route::apiResource('stocks', StockController::class)->names('api.')->only('index');
-Route::apiResource('images', ImageController::class)->names('api.')->only('index');
+Route::apiResource('products.califications', CalificationController::class)->only('index');
+Route::apiResource('sections', SectionController::class)->only('index');
+Route::apiResource('categories', CategoryController::class)->only('index');
+Route::apiResource('products', ProductController::class)->only('index', 'show');
+Route::apiResource('stocks', StockController::class)->only('index');
+Route::apiResource('images', ImageController::class)->only('index');
 
 Route::post('/register', [UserController::class, 'register']);
 
@@ -31,18 +31,12 @@ Route::middleware('auth:sanctum')->group(
         Route::delete('/delete_profile', [UserController::class, 'destroy']);
 
         Route::apiResource('sections', SectionController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
-
         Route::apiResource('categories', CategoryController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
-
         Route::apiResource('products', ProductController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
-
         Route::apiResource('stocks', StockController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
-
-        Route::apiResource('orders', OrderController::class)->names('api.')->only('store', 'show', 'index');
+        Route::apiResource('images', ImageController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
         Route::apiResource('orders', OrderController::class)->names('api.')->middleware('role:owner,employed')->only('update');
 
-
-        Route::apiResource('images', ImageController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
-
-        Route::apiResource('products.califications', CalificationController::class)->only('store', 'update', 'destroy');
+        Route::apiResource('orders', OrderController::class)->names('api.')->only('store', 'show', 'index');
+        Route::apiResource('products.califications', CalificationController::class)->names('api.')->only('store', 'update', 'destroy');
 });
