@@ -13,10 +13,10 @@ class RoleValid
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $rol): Response
+    public function handle(Request $request, Closure $next, string ...$rol): Response
     {
 
-        if ($request->user()->role == $rol)
+        if (in_array($request->user()->role, $rol))
             {
                 return $next($request);
             }

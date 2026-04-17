@@ -34,19 +34,19 @@ Route::middleware('auth:sanctum')->group(
         Route::patch('/edit_profile', [UserController::class, 'update']);
         Route::delete('/delete_profile', [UserController::class, 'destroy']);
 
-        Route::apiResource('sections', SectionController::class)->names('api.')->middleware('role:owner')->only('store', 'update', 'destroy');
+        Route::apiResource('sections', SectionController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
 
-        Route::apiResource('categories', CategoryController::class)->names('api.')->middleware('role:owner')->only('store', 'update', 'destroy');
+        Route::apiResource('categories', CategoryController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
 
-        Route::apiResource('products', ProductController::class)->names('api.')->middleware('role:owner')->only('store', 'update', 'destroy');
+        Route::apiResource('products', ProductController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
 
-        Route::apiResource('stocks', StockController::class)->names('api.')->middleware('role:owner')->only('store', 'update', 'destroy');
+        Route::apiResource('stocks', StockController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
 
         Route::apiResource('orders', OrderController::class)->names('api.')->only('store', 'show', 'index');
-        Route::apiResource('orders', OrderController::class)->names('api.')->middleware('role:owner')->only('update');
+        Route::apiResource('orders', OrderController::class)->names('api.')->middleware('role:owner,employed')->only('update');
 
 
-        Route::apiResource('images', ImageController::class)->names('api.')->middleware('role:owner')->only('store', 'update', 'destroy');
+        Route::apiResource('images', ImageController::class)->names('api.')->middleware('role:owner,employed')->only('store', 'update', 'destroy');
 
         Route::apiResource('products.califications', CalificationController::class)->only('store', 'update', 'destroy');
 });
