@@ -18,6 +18,11 @@ class ProductController extends Controller
         private ProductService $service
     ){}
 
+    public function show(Product $product)
+    {
+        return new ProductResource($product);
+    }
+
     public function index()
     {
         $myProducts = Product::all();

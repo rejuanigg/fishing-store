@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCalificationRequest;
 use App\Http\Requests\UpdateCalificationRequest;
 use App\Http\Resources\CalificationResource;
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Calification;
+use App\Models\Product;
 use App\Services\CalificationService;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +18,31 @@ class CalificationController extends Controller
     public function __construct(
         private CalificationService $service
     ){}
+
+    public function index(Product $product)
+    {
+        $calificationsProducts = $product->califications;
+
+        return CalificationResource::collection($calificationsProducts);
+    }
+
+    public function show(Calification $calification)
+    {
+        $authUser = Auth::user();
+
+        $access = in_array($authUser->role, ['employee', 'owner']);
+
+        $accessUser = $calification->user_id === $authUser->id;
+
+        if ($access || $accessUser)
+            {
+                return new CalificationResource($calification);
+            }
+        else
+            {
+                abort(403, 'No tenés permiso para ver esto.');
+            }
+    }
 
     public function store(StoreCalificationRequest $request)
     {
