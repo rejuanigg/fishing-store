@@ -8,13 +8,22 @@ use App\Http\Requests\UpdateImageRequest;
 use App\Http\Resources\ImageResource;
 use App\Models\Image;
 use App\Services\ImageService;
-use Illuminate\Support\Facades\Storage;
+use Cloudinary\Cloudinary;
 
 class ImageController extends Controller
 {
+    private \Cloudinary\Cloudinary $cloudinary;
     public function __construct(
         private ImageService $service
-    ){}
+    ){
+        $this->cloudinary = new \Cloudinary\Cloudinary([
+            'cloud' => [
+                'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+                'api_key'    => env('CLOUDINARY_API_KEY'),
+                'api_secret' => env('CLOUDINARY_API_SECRET'),
+            ]
+        ]);
+    }
 
     public function index()
     {
@@ -23,11 +32,20 @@ class ImageController extends Controller
         return ImageResource::collection($myImages);
     }
 
-    public function store(StoreImageRequest $request)
+    public function store(StoreImageRequest $request,)
     {
-        $path = $request->file('image')->store('images', 'public');
 
-        $data = array_merge($request->validated(), ['image' => $path]);
+        $result = $this->cloudinary->uploadApi()->upload(
+            $request->file('image')->getRealPath()
+        );
+
+        $path = $result['secure_url'];
+        $publicId = $result['public_id'];
+
+        $data = array_merge($request->validated(), [
+            'image' => $path,
+            'public_id' => $publicId
+        ]);
 
         $newImage = $this->service->store($data);
 
@@ -38,11 +56,19 @@ class ImageController extends Controller
 
     public function update(UpdateImageRequest $request, Image $image)
     {
-        Storage::delete([$image->image]);
 
-        $path = $request->file('image')->store('images', 'public');
 
-        $data = array_merge($request->validated(), ['image' => $path]);
+        $result = $this->cloudinary->uploadApi()->upload(
+            $request->file('image')->getRealPath()
+        );
+
+        $path = $result['secure_url'];
+        $publicId = $result['public_id'];
+
+        $data = array_merge($request->validated(), [
+            'image' => $path,
+            'public_id' => $publicId
+        ]);
 
         $editImage = $this->service->update($image , $data);
 
@@ -53,8 +79,7 @@ class ImageController extends Controller
 
     public function destroy(Image $image)
     {
-        Storage::delete([$image->image]);
-
+        $this->cloudinary->uploadApi()->destroy($image->public_id);
         $this->service->destroy($image);
     }
 }
