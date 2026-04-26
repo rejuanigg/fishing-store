@@ -20,7 +20,8 @@ class ProductResource extends JsonResource
             'price'=>$this->price,
             'description'=>$this->description,
             'categories' => CategoryResource::collection($this->categories),
-            'images'=> ImageResource::collection($this->images)
+            'images'=> ImageResource::collection($this->images),
+            'califications'=> CalificationResource::collection($this->califications)
         ];
     }
 }
