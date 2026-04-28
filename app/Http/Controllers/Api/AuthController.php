@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -14,7 +15,8 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $token = $request->user()->createToken('auth_token');
-            return ['token'=>$token->plainTextToken];
+            $role = $request->user()->role;
+            return ['token'=>$token->plainTextToken, 'role'=> $role,];
         }
         else {
             return response()->json(['message' => 'Credenciales incorrectas'], 401);
