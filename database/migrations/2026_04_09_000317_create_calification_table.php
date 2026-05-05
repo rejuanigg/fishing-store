@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('califications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')
-            ->constrained('products');
-            $table->foreignId('user_id')
+            ->constrained('products')
+            ->cascadeOnDelete();
+            $table
+            ->foreignId('user_id')
             ->constrained('users');
             $table->decimal('score', 10, 2);
             $table->timestamps();

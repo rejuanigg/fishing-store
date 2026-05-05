@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -51,5 +52,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $this->service->destroy($product);
+
+        return response()->noContent();
     }
 }
