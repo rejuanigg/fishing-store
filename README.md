@@ -69,43 +69,43 @@ This platform is an efficient and fast way to be owner of a big ecommerce websit
 
 ### Sections
 
-| Method | Endpoint                        | Description         |
-|--------|---------------------------------|---------------------|
-| GET | `/api/sections`                 | Get sections        |
-| POST | `/api/sections`                 | Create new sections |
-| PUT/PATCH | `/api/sections/{section}`       | update sections     |
-| DELETE | `/api/sections/{section}`       | Delete sections     |
+| Method    | Endpoint                  | Description         |
+|-----------|---------------------------|---------------------|
+| GET       | `/api/sections`           | Get sections        |
+| POST      | `/api/sections`           | Create new sections |
+| PUT/PATCH | `/api/sections/{section}` | update sections     |
+| DELETE    | `/api/sections/{section}` | Delete sections     |
 
 ### Stocks
 
-| Method | Endpoint | Description             |
-|--------|----------|-------------------------|
-| GET | `/api/stocks` | get the product's stock |
-| POST | `/api/stocks` | add a product's stock   |
+| Method    | Endpoint              | Description             |
+|-----------|-----------------------|-------------------------|
+| GET       | `/api/stocks`         | get the product's stock |
+| POST      | `/api/stocks`         | add a product's stock   |
 | PUT/PATCH | `/api/stocks/{stock}` | update product's stock  |
-| DELETE | `/api/stocks/{stock}` | delete a product stock  |
+| DELETE    | `/api/stocks/{stock}` | delete a product stock  |
 
 ### Orders
 
-| Method | Endpoint | Description                                                |
-|--------|----------|------------------------------------------------------------|
-| GET | `/api/orders` | get all the orders                                         |
-| POST | `/api/orders` | create a order                                             |
-| GET | `/api/orders/active` | get the orders with a 'in progress' or 'processing' status |
-| GET | `/api/orders/historical` | get the orders with a 'completed' or 'canceled' status     |
-| GET | `/api/orders/recent` | get the 10th first orders                                  |
-| GET | `/api/orders/{order}` | get a specefic order with their id                         |
-| PATCH | `/api/orders/{order}` | update only the order status                               |
-| PATCH | `/api/orders/{order}/cancel` | cancel a order with their id                               |
+| Method | Endpoint                     | Description                                                |
+|--------|------------------------------|------------------------------------------------------------|
+| GET    | `/api/orders`                | get all the orders                                         |
+| POST   | `/api/orders`                | create a order                                             |
+| GET    | `/api/orders/active`         | get the orders with a 'in progress' or 'processing' status |
+| GET    | `/api/orders/historical`     | get the orders with a 'completed' or 'canceled' status     |
+| GET    | `/api/orders/recent`         | get the 10th first orders                                  |
+| GET    | `/api/orders/{order}`        | get a specefic order with their id                         |
+| PATCH  | `/api/orders/{order}`        | update only the order status                               |
+| PATCH  | `/api/orders/{order}/cancel` | cancel a order with their id                               |
 
 ### Images
 
-| Method | Endpoint | Description         |
-|--------|----------|---------------------|
-| GET | `/api/images` | get a product image |
-| POST | `/api/images` | create a new image  |
+| Method    | Endpoint              | Description         |
+|-----------|-----------------------|---------------------|
+| GET       | `/api/images`         | get a product image |
+| POST      | `/api/images`         | create a new image  |
 | PUT/PATCH | `/api/images/{image}` | update a image      |
-| DELETE | `/api/images/{image}` | delete a image      |
+| DELETE    | `/api/images/{image}` | delete a image      |
 
 
 
